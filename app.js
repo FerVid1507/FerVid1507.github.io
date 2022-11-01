@@ -75,7 +75,7 @@ function putDatos() {
       </div>
     `;
         limpiarCampos();
-        cargar();
+        //cargar();
         sleep(10000);
     }
 }
@@ -119,7 +119,7 @@ function deleteDatos() {
     `;
 
     limpiarCampos();
-    cargar();
+    //cargar();
     sleep(10000);
 }
 
@@ -149,10 +149,11 @@ function eliminar(id) {
 
 function cargar() {
     let data = db.ref('neologismos');
-    document.querySelector('#tabla').innerHTML = '';
+    
     data.on('value', function (snapshot) {
         let datos = snapshot.val();
         let numItem = 1;
+        document.querySelector('#tabla').innerHTML = '';
         for (var indice in datos) {
 
             document.querySelector('#tabla').innerHTML += `
@@ -176,7 +177,9 @@ function cargar() {
                 });
             });
         }
+        //document.querySelector('#tabla').innerHTML = relleno;
     });
+    
 }
 
 function datosTabla(id) {
