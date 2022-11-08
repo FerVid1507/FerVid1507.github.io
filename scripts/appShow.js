@@ -18,9 +18,9 @@ function cargar() {
             <div class="col-sm-6" style="padding-bottom:10px;">
           <div class="card" style="border-radius: 10px; opacity:0.95; background-color:rgb(216, 214, 214)">
             <div class="card-body">
-              <h5 class="card-title"> ${datos[indice].titulo}</h5>
-              <p class="card-text">Autor: ${datos[indice].contenido}</p>
-              <p class="card-subtitle mb-2 text-muted" style="margin-top:10px;">Autor: ${datos[indice].autor}</p>
+              <h5 class="card-title" style="text-align: center; font-family:'Fredoka One';"> ${datos[indice].titulo}</h5>
+              <p class="card-text" style=" font-family:'Fredoka', sans-serif; text-align: justify;">Autor: ${datos[indice].contenido}</p>
+              <p class="card-subtitle mb-2 text-muted" style="margin-top:10px; font-family:'Pacifico';">Autor: ${datos[indice].autor}</p>
             </div>
           </div>
         </div>
