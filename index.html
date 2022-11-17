@@ -6,147 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon.png"/>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
-
-    <title>Nuevos Neologísmos de Hoy</title>
-
+    <title>MiTarjeta</title>
 </head>
 
-<body style="  background:linear-gradient(180deg, rgb(255,87,34), rgb(29, 13, 9));
-background-attachment: fixed;">
+<body>
+    <div class="card border-warning" style=" height: 250px; margin: 10px; background-color: rgb(0, 145, 0);">
+        <!--img src="images/icon.png" class="card-img" alt="..." style="height: 110px;"-->
+        <div class="card-img-overlay">
+            <h5 style="text-align: center; color: rgb(199, 199, 199);">Saldo restante:</h5>
 
-<div id="ImagenFondo" style="
-background-image: url('https://raw.githubusercontent.com/FerVid1507/fervid1507.github.io/ccdab543dc1cceb474b80a9818fed55a7fdcab89/fondonnh.png'); 
-background-size: 90%; 
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-position: center;
-">
+            <div style="width: 80%; margin: auto; border-radius: 20px; background-color: rgb(5, 90, 5);">
+                <h4 id="saldo" style="font-size: 30px; text-align: center; color: white;">$0</h4>
+            </div>
 
+            <h5 style="text-align: center; color: rgb(199, 199, 199);">Pasajes restante:</h5>
+            <div style="width: 80%; margin: auto; border-radius: 20px; background-color: rgb(5, 90, 5);">
+                <h4 id="pasajes" style="padding: 2px; font-size: 26px; text-align: center; color: white;">Realiza una recarga!</h4>
+            </div>
 
+            <h5 style="height: 10px;"></h5>
 
-<nav class="navbar navbar-light " style="background-color: rgb(243, 74, 22); width: 100%; font-family:'Pacifico',cursive;">
-  <div class="container-fluid">
-    <p class="navbar-brand" style="margin: auto; color: white; ">
-      <!--img src="https://raw.githubusercontent.com/FerVid1507/fervid1507.github.io/ccdab543dc1cceb474b80a9818fed55a7fdcab89/fondonnh.png" alt="" width="30" height="24" class="d-inline-block align-text-top"-->
-      Nuevos Nelogismos de Hoy
-    </p>
-  </div>
-</nav>
+            <div style="width: 100%; display:inline-flex; align-items: unset;">
+                <a id="buy" class="btn btn-success" style="margin: auto; border-radius: 15px;"
+                data-bs-toggle="modal" data-bs-target="#modalRecarga">
+                    <img src="images/pago-en-efectivo.png" style="width: 30px;"/>
+                    Buy ticket</a>
+                <a id="pay" class="btn btn-success" style="margin: auto; border-radius: 15px;">
+                    <img src="images/tarjeta-de-credito.png" style="width: 35px;" />
+                    Pay ticket</a>
+            </div>
 
-    <!--div id="contenedor"></div>
-
-    <div style="width: 500px; margin: auto; margin-top: 15px; padding: 7px;">
-
-    <div class="mb-2" >
-
-        <label for="titulo" class="form-label">Título</label>
-        <input type="text" class="form-control" id="titulo" placeholder="Ingrese el título">
-
-    </div>
-    <div class="mb-3" style="width: 300;">
-        <label for="contenido" class="form-label">Contenido</label>
-        <textarea class="form-control" id="contenido" rows="3"></textarea>
-
-        <label for="autor" class="form-label">Autor</label>
-        <input type="text" class="form-control" id="autor" placeholder="Nombre de maestro">
-
-        <div class="col-auto" 
-        style="display: flex; 
-            justify-content: center; 
-            margin-top: 20px;
-            padding-top: 12px;">
-            <button type="submit" class="btn btn-outline-success mb-3" id="guardar">Guardar neologísmo</button>
-            <button type="button" style="margin-left: 15px;" class="btn btn-outline-primary mb-3" id="limpiar">Limpiar campos</button>
-            <button type="button" style="margin-left: 15px;" class="btn btn-outline-danger mb-3" id="eliminar">Eliminar</button>
-          </div>
-
+        </div>
     </div>
 
-    </div>
 
-    <table class="table" style="overflow: auto; ">
-        <thead style="overflow: auto; ">
-          <tr>
-            <th scope="col">Item</th>
-            <th scope="col">Título</th>
-            <th scope="col">Contenido</th>
-            <th scope="col">Autor</th>
-            <th scope="col">Acción</th>
-          </tr>
-        </thead>
-        <tbody id="tabla">
-    
-        </tbody>
-      </table>
+    <!--Datos-->
+    <ol class="list-group list-group-numbered" id="Contenedor">
+
+      </ol>
 
 
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog">
+     <!--Buy Ticket-->
+     <div class="modal fade" id="modalRecarga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Confirmar eliminación</h5>
+              <h5 class="modal-title" id="exampleModalLabel" style="width: 100%; text-align: center;">Balance Recharge</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Está seguro de eliminar este elemento?
+             
+                <div class="mb-3 row" style=" margin: auto;">
+                    <div class="col-sm-10" style="margin: auto;">
+                      <input type="number" class="form-control" id="txtRecargar" placeholder="$10.00">
+                    
+                      <button id="btnRecargar" data-bs-dismiss="modal" class="btn btn-primary" style="display: flex; margin: auto; margin-top: 20px;">
+                      Recharge</button>
+                  </div>
+
+                    </div>
+                  </div>
+
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmarE">Eliminar</button>
+
             </div>
           </div>
         </div>
-      </div-->
-
-
-
-
-      <!--div class="container" >
-        <div class="row" id="Contenedor" style="margin-right: auto; margin-left: auto;">
-
-        </div>
-      </div-->
-
-
-   
-      <div class="row" id="Contenedor"  style="align-content: center; min-width: 300px; max-width: 823px; margin-left: auto; margin-right: auto;">
-
       </div>
 
 
-
-            
-
-      
-    
-      <!--div class="container">
-        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" id="Contenedor">
-
-
-        </div>
-      </div-->
-
-    </div>
-
 </body>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>const firebaseConfig = {
-    apiKey: "AIzaSyBHGVdgXhsQqaWalenSlNiRSuVFGSzYEwc",
-    projectId: "nuevosnelogismosdehoy",
-};
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script type="module">
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBpRo-4DpdVlaERoi7qLhZwZr7WKFWN9RQ",
+        authDomain: "bdfirestore-1bafd.firebaseapp.com",
+        projectId: "bdfirestore-1bafd",
+        storageBucket: "bdfirestore-1bafd.appspot.com",
+        messagingSenderId: "1064901149667",
+        appId: "1:1064901149667:web:166571daea70f78c3ad6d6"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
 </script>
-<script src="scripts/notificaciones.js"></script>
-<script src="scripts/appShow.js"></script>
+<script src="main.js" type="module"></script>
 
 </html>
