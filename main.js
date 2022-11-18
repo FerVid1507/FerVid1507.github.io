@@ -24,8 +24,8 @@ botonSi.addEventListener('click', ()=>{
 
         db.collection('saldo').doc(date.toUTCString()).set({
             date: date.toLocaleString() + '',
-            saldo: newSaldo,
-            recarga: '4.75',
+            saldo: '4.75',
+            recarga: newSaldo,
             type: 'Cobro'
         }).then((docRef) => {
             console.log('Event sucessfuly!');
@@ -82,7 +82,7 @@ function readSaldo() {
             <div class="fw-bold">${element.date}</div>
             Tipo: ${element.type}
          </div>
-            <span class="badge bg-primary rounded-pill">$${parseFloat(element.recarga)}</span>
+            <span class="badge bg-primary rounded-pill">$${parseFloat(element.saldo)}</span>
         </li>
         `;
 
