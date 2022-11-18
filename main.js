@@ -25,7 +25,7 @@ botonSi.addEventListener('click', ()=>{
         db.collection('saldo').doc(date.toUTCString()).set({
             date: date.toLocaleString() + '',
             saldo: newSaldo,
-            recarga: txtRecargar.value,
+            recarga: '4.75',
             type: 'Cobro'
         }).then((docRef) => {
             console.log('Event sucessfuly!');
@@ -44,7 +44,7 @@ botonRecargar.addEventListener('click', () => {
         db.collection('saldo').doc(date.toUTCString()).set({
             date: date.toLocaleString() + '',
             saldo: newSaldo,
-            recarga: '4.75',
+            recarga: txtRecargar.value,
             type: 'Recarga'
         }).then((docRef) => {
             console.log('Event sucessfuly!');
