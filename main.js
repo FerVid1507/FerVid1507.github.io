@@ -12,28 +12,37 @@ let txtRecargar = document.getElementById('txtRecargar');
 let botonRecargar = document.getElementById('btnRecargar');
 let botonSi = document.getElementById('Si');
 
+let Notificacion = document.getElementById('Notificacion');
+
 let saldoCurrent = 0;
 
-botonSi.addEventListener('click', ()=>{
-    var date = new Date();
-    
-    if (parseFloat(saldo.textContent.slice(1)) >=4.75) {
-        
-        let newSaldo = parseFloat(saldo.textContent.slice(1)) - parseFloat(4.75);
-        console.log('Cobro: ' + newSaldo);
-
-        db.collection('saldo').doc(date.toUTCString()).set({
-            date: date.toLocaleString() + '',
-            saldo: '4.75',
-            recarga: newSaldo,
-            type: 'Cobro'
-        }).then((docRef) => {
-            console.log('Event sucessfuly!');
-            readSaldo();
-        }).catch((error) => {
-            console.log('Error: ' + error);
-        });
+btnPay.addEventListener('click', () => {
+    if (parseFloat(saldo.textContent.slice(1)) >= 4.75) {
+        /*data-bs-toggle="modal" data-bs-target="#modalPay" */
+        new bootstrap.Modal(document.getElementById('modalPay')).show();
     }
+    else {
+        document.querySelector('#Notificacion').innerHTML = getNotificationError('Saldo insuficiente');
+        window.setTimeout(() => document.querySelector('#Notificacion').innerHTML = '', 5000);
+    }
+});
+
+botonSi.addEventListener('click', () => {
+    var date = new Date();
+
+    let newSaldo = parseFloat(saldo.textContent.slice(1)) - parseFloat(4.75);
+    // console.log('Cobro: ' + newSaldo);
+
+    db.collection('saldo').doc(date.toUTCString()).set({
+        date: date.toLocaleString() + '',
+        saldo: newSaldo,
+        recarga: '4.75',
+        type: 'Cobro'
+    }).then((docRef) => {
+        console.log('Event sucessfuly!');
+    }).catch((error) => {
+        console.log('Error: ' + error);
+    });
 });
 
 botonRecargar.addEventListener('click', () => {
@@ -48,7 +57,6 @@ botonRecargar.addEventListener('click', () => {
             type: 'Recarga'
         }).then((docRef) => {
             console.log('Event sucessfuly!');
-            readSaldo();
         }).catch((error) => {
             console.log('Error: ' + error);
         });
@@ -75,45 +83,45 @@ function readSaldo() {
 
         items.map(
             function (element) {
-                saldoCurrent =  element.saldo;
+                saldoCurrent = element.saldo;
+
+                let tipo = element.type;
+
+                let showTypeSaldo;
+                if (tipo === 'Recarga') showTypeSaldo = parseFloat(element.saldo);
+                else if (tipo === 'Cobro') showTypeSaldo = parseFloat(element.recarga);
+
+                console.log('Type: ' + element.type + '-> ' + showTypeSaldo);
+
                 document.querySelector('#Contenedor').innerHTML += `
         <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
             <div class="fw-bold">${element.date}</div>
             Tipo: ${element.type}
          </div>
-            <span class="badge bg-primary rounded-pill">$${parseFloat(element.saldo)}</span>
+            <span class="badge bg-primary rounded-pill">$${showTypeSaldo}</span>
         </li>
         `;
 
 
-        if(saldoCurrent>0){
-            saldo.innerText = '$'+ parseFloat(saldoCurrent) ;
+                if (saldoCurrent > 0) {
+                    saldo.innerText = '$' + parseFloat(saldoCurrent);
 
-            let numPasajes = parseInt(saldoCurrent / 4.75);
-            console.log(numPasajes);
-            if(numPasajes<0){
-                pasajes.innerText = 'Realiza una recarga!';
-            }else{
-                pasajes.innerText = numPasajes;
-            }
-             // 
-          }else{
-            saldo.innerText = '$0'
-              pasajes.innerText = 'Realiza una recarga!';
-          }
+                    let numPasajes = parseInt(saldoCurrent / 4.75);
+                    // console.log(numPasajes);
+                    if (numPasajes < 0) {
+                        pasajes.innerText = 'Realiza una recarga!';
+                    } else {
+                        pasajes.innerText = numPasajes;
+                    }
+                    // 
+                } else {
+                    saldo.innerText = '$0'
+                    pasajes.innerText = 'Realiza una recarga!';
+                }
 
             });
 
-
-              
-
     });
-
-    
-   
-    
-      
-
 
 }
