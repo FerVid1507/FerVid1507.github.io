@@ -84,14 +84,13 @@ function readSaldo() {
         items.map(
             function (element) {
                 saldoCurrent = element.saldo;
-
-                let tipo = element.type;
-
-                let showTypeSaldo;
-                if (tipo === 'Recarga') showTypeSaldo = parseFloat(element.saldo);
-                else if (tipo === 'Cobro') showTypeSaldo = parseFloat(element.recarga);
-
-                console.log('Type: ' + element.type + '-> ' + showTypeSaldo);
+                let colorBadge;
+                let showTypeSaldo = parseFloat(element.recarga);
+                if(element.type==='Recarga'){
+                    colorBadge = 'success';
+                }else{
+                    colorBadge = 'danger';
+                }
 
                 document.querySelector('#Contenedor').innerHTML += `
         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -99,7 +98,7 @@ function readSaldo() {
             <div class="fw-bold">${element.date}</div>
             Tipo: ${element.type}
          </div>
-            <span class="badge bg-primary rounded-pill">$${showTypeSaldo}</span>
+            <span class="badge bg-${colorBadge} rounded-pill" style="margin-top:10px; width:70px; height:30px; font-size:18px;">$${showTypeSaldo}</span>
         </li>
         `;
 

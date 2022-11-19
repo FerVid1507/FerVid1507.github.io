@@ -13,28 +13,28 @@
 
     <div id="Notificacion"></div>
 
-    <div class="card border-warning" style=" height: 250px; margin: 10px; background-color: rgb(0, 145, 0);">
+    <div class="card border-warning" style=" height: 250px; margin: 10px; background-image: url('images/Mi\ Tarjeta\ fondo.png'); background-size: cover;">
         <!--img src="images/icon.png" class="card-img" alt="..." style="height: 110px;"-->
         <div class="card-img-overlay">
-            <h5 style="text-align: center; color: rgb(199, 199, 199);">Saldo restante:</h5>
+            <h5 style="text-align: center; color: rgb(245, 255, 46);">Saldo restante:</h5>
 
-            <div style="width: 80%; margin: auto; border-radius: 20px; background-color: rgb(5, 90, 5);">
-                <h4 id="saldo" style="font-size: 30px; text-align: center; color: white;">$0</h4>
+            <div style="width: 80%; margin: auto; border-radius: 20px; background-color: rgb(100, 100, 100);">
+                <h4 id="saldo" style="font-size: 30px; text-align: center; color: rgb(245, 255, 46);">$0</h4>
             </div>
 
-            <h5 style="text-align: center; color: rgb(199, 199, 199);">Pasajes restante:</h5>
-            <div style="width: 80%; margin: auto; border-radius: 20px; background-color: rgb(5, 90, 5);">
-                <h4 id="pasajes" style="padding: 2px; font-size: 26px; text-align: center; color: white;">Realiza una recarga!</h4>
+            <h5 style="text-align: center; color: rgb(245, 255, 46);">Pasajes restante:</h5>
+            <div style="width: 80%; margin: auto; border-radius: 20px; background-color: rgb(100, 100, 100);">
+                <h4 id="pasajes" style="padding: 2px; font-size: 26px; text-align: center; color: rgb(245, 255, 46);">Realiza una recarga!</h4>
             </div>
 
-            <h5 style="height: 10px;"></h5>
+      
 
             <div style="width: 100%; display:inline-flex; align-items: unset;">
-                <a id="buy" class="btn btn-success" style="margin: auto; border-radius: 15px;"
+                <a id="buy" class="btn btn-success" style="background-color: rgb(0 121 109); margin: auto; border: 2px solid rgb(189, 199, 5); border-radius: 25px;"
                 data-bs-toggle="modal" data-bs-target="#modalRecarga">
                     <img src="images/pago-en-efectivo.png" style="width: 30px;"/>
                     Buy ticket</a>
-                <a id="pay" class="btn btn-success" style="margin: auto; border-radius: 15px;"
+                <a id="pay" class="btn btn-success" style="background-color: rgb(0 121 109); margin: auto; border: 2px solid rgb(189, 199, 5); border-radius: 25px;"
                 >
                     <img src="images/tarjeta-de-credito.png" style="width: 35px;" />
                     Pay ticket</a>
@@ -58,18 +58,18 @@
      <!--Buy Ticket-->
      <div class="modal fade" id="modalRecarga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style="background-color: rgba(0, 121, 109, 0.90);">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel" style="width: 100%; text-align: center;">Balance Recharge</h5>
+              <h5 class="modal-title" id="exampleModalLabel" style="width: 100%; text-align: center; color:white">Balance Recharge</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
              
                 <div class="mb-3 row" style=" margin: auto;">
                     <div class="col-sm-10" style="margin: auto;">
-                      <input type="number" class="form-control" id="txtRecargar" placeholder="$10.00">
+                      <input type="number" class="form-control" id="txtRecargar" placeholder="$10.00" style="background-color: rgb(100, 100, 100); border-radius: 25px; text-align: center; color: white; ">
                     
-                      <button id="btnRecargar" data-bs-dismiss="modal" class="btn btn-primary" style="display: flex; margin: auto; margin-top: 20px;">
+                      <button id="btnRecargar" data-bs-dismiss="modal" class="btn btn-primary" style="display: flex; margin: auto; margin-top: 20px; background-color: green; border: 0; border-radius: 25px;">
                       Recharge</button>
                   </div>
 
@@ -87,9 +87,9 @@
     <!--Pay Ticket-->
     <div class="modal fade" id="modalPay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style="background-color: rgba(0, 121, 109, 0.90);">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel" style="width: 100%; text-align: center;">Pay Ticket</h5>
+              <h5 class="modal-title" id="exampleModalLabel" style="width: 100%; text-align: center; color:white">Pay Ticket</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -97,17 +97,17 @@
             <div class="modal-body">
              
                   <div class="mb-3 row" style=" margin: auto;">
-                    <label for="inputPassword" class="col-form-label" style="text-align: center;">Ensure pay ticket?</label>
+                    <label for="inputPassword" class="col-form-label" style="text-align: center; color: white;">Ensure pay ticket?</label>
                   </div>
 
 
                   <div style="width: 100%; display:inline-flex; align-items: unset;">
 
-                    <a id="Si" class="btn btn-danger" style="width: 100px; margin: auto; border-radius: 15px;"
+                    <a id="Si" class="btn btn-danger" style="width: 100px; margin: auto; border-radius: 25px;"
                     data-bs-dismiss="modal">Yes</a>
 
 
-                    <a id="No" class="btn btn-primary" style="width: 100px; margin: auto; border-radius: 15px;"
+                    <a id="No" class="btn btn-primary" style="width: 100px; margin: auto; border-radius: 25px; background-color: green; border: 0;"
                     data-bs-dismiss="modal">No</a>
                 </div>
 
