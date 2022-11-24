@@ -31,7 +31,7 @@ botonSi.addEventListener('click', () => {
     var date = new Date();
 
     let newSaldo = parseFloat(saldo.textContent.slice(1)) - parseFloat(4.75);
-    // console.log('Cobro: ' + newSaldo);
+     console.log('Saldo actual: ' + parseFloat(saldo.textContent.slice(1)) + ' - '+ 4.75+' Cobro: ' + newSaldo);
 
     db.collection('saldo').doc(date.toUTCString()).set({
         date: date.toLocaleString() + '',
@@ -69,21 +69,24 @@ function readSaldo() {
 
     let saldoCurrent = 0;
     //const response = await db.collection('saldo').orderBy('date', 'desc').get();
+let i = 0;
 
-
-    db.collection('saldo').onSnapshot((doc) => {
+    db.collection('saldo').orderBy('date', 'asc').onSnapshot((doc) => {
         let items = [];
         saldo.innerText = '$0'
         pasajes.innerText = 'Realiza una recarga!';
 
         document.querySelector('#Contenedor').innerHTML = '';
         doc.forEach(element => {
+
             items.push({ ...element.data() });
+            //console.log('Num elements: ' + element.data().saldo);
         });
 
         items.map(
             function (element) {
                 saldoCurrent = element.saldo;
+                console.log('Saldo ob: ' + element.saldo);
                 let colorBadge;
                 let showTypeSaldo = parseFloat(element.recarga);
                 if(element.type==='Recarga'){
@@ -105,7 +108,7 @@ function readSaldo() {
 
                 if (saldoCurrent > 0) {
                     saldo.innerText = '$' + parseFloat(saldoCurrent);
-
+                    //console.log('Saldo current: ' + saldoCurrent);
                     let numPasajes = parseInt(saldoCurrent / 4.75);
                     // console.log(numPasajes);
                     if (numPasajes < 0) {
