@@ -13,6 +13,7 @@ let botonRecargar = document.getElementById('btnRecargar');
 let botonSi = document.getElementById('Si');
 
 let Notificacion = document.getElementById('Notificacion');
+document.getElementById('version').textContent = 'Version: 1.0.2'
 
 let saldoCurrent = 0;
 
