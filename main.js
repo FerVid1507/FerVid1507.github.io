@@ -1,7 +1,7 @@
 const db = firebase.firestore();
 let datos = [];
 
-readSaldo();
+
 
 let btnPay = document.getElementById('pay');
 let btnBuy = document.getElementById('buy');
@@ -19,6 +19,9 @@ let saldoCurrent = 0;
 
 let numItem = 0;
 
+readSaldo();
+
+
 btnPay.addEventListener('click', () => {
     if (parseFloat(saldo.textContent.slice(1)) >= 4.75) {
         /*data-bs-toggle="modal" data-bs-target="#modalPay" */
@@ -32,10 +35,10 @@ btnPay.addEventListener('click', () => {
 
 botonSi.addEventListener('click', () => {
     var date = new Date();
-
+    //console.log('Num item  en cobrar: ' + numItem);
     let newSaldo = parseFloat(saldo.textContent.slice(1)) - parseFloat(4.75);
         let num = numItem + 1;
-     db.collection('saldo').doc(date.toUTCString()).set({
+     db.collection('saldo').doc(numItem.toString()).set({
         item: num.toString(),
         date: date.toLocaleString() + '',
         saldo: newSaldo,
@@ -53,7 +56,9 @@ botonRecargar.addEventListener('click', () => {
     let newSaldo = parseFloat(saldo.textContent.slice(1)) + parseFloat(txtRecargar.value);
     if (txtRecargar.value != 0) {
         let num = numItem + 1;
-        db.collection('saldo').doc(date.toUTCString()).set({
+
+        //console.log('Num item  en recarga: ' + numItem);
+        db.collection('saldo').doc(numItem.toString()).set({
             item: num.toString(),
             date: date.toLocaleString() + '',
             saldo: newSaldo,
@@ -75,7 +80,7 @@ function readSaldo() {
     //const response = await db.collection('saldo').orderBy('date', 'desc').get();
 
 
-    db.collection('saldo').orderBy('item', 'asc').onSnapshot((doc) => {
+    db.collection('saldo').onSnapshot((doc) => {
 
         
 
@@ -86,11 +91,12 @@ function readSaldo() {
         document.querySelector('#Contenedor').innerHTML = '';
         doc.forEach(element => {
             items.push({ ...element.data() });
-            console.log('ACTUALIZACION');
-            console.log('VAL: ' + element.data().item);
-             numItem = parseInt(element.data().item);
-        });
+            //console.log('ACTUALIZACION');
+            //console.log('VAL: ' + element.data().item);
+             //parseInt(element.data().item);
 
+        }); 
+        
         items.map(
             function (element) {
                 
@@ -130,7 +136,8 @@ function readSaldo() {
                 }
 
             });
-
+            numItem = items.length;
+            //console.log('Num items: ' + numItem);
     });
 
 }
