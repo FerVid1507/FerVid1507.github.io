@@ -39,7 +39,7 @@ botonSi.addEventListener('click', () => {
     let newSaldo = parseFloat(saldo.textContent.slice(1)) - parseFloat(4.75);
         let num = numItem + 1;
      db.collection('saldo').doc(numItem.toString()).set({
-        item: num.toString(),
+        item: numItem,
         date: date.toLocaleString() + '',
         saldo: newSaldo,
         recarga: 4.75,
@@ -59,7 +59,7 @@ botonRecargar.addEventListener('click', () => {
 
         //console.log('Num item  en recarga: ' + numItem);
         db.collection('saldo').doc(numItem.toString()).set({
-            item: num.toString(),
+            item: numItem,
             date: date.toLocaleString() + '',
             saldo: newSaldo,
             recarga: parseFloat(txtRecargar.value),
@@ -78,11 +78,9 @@ function readSaldo() {
 
     let saldoCurrent = 0;
     //const response = await db.collection('saldo').orderBy('date', 'desc').get();
+    let stateRead = false;
 
-
-    db.collection('saldo').onSnapshot((doc) => {
-
-        
+    db.collection('saldo').orderBy('item', 'asc').onSnapshot((doc) => {
 
         let items = [];
         saldo.innerText = '$0'
@@ -100,7 +98,8 @@ function readSaldo() {
         items.map(
             function (element) {
                 
-                saldoCurrent = element.saldo;
+                if(!stateRead)saldoCurrent = element.saldo;
+                //stateRead = true;
                 
                 let colorBadge;
                 let showTypeSaldo = parseFloat(element.recarga);
