@@ -110,10 +110,11 @@ function readSaldo() {
                 }
 
                 document.querySelector('#Contenedor').innerHTML += `
-        <li class="list-group-item d-flex justify-content-between align-items-start">
+        <li class="list-group-item d-flex justify-content-between align-items-start"  
+        style="background-color: rgb(2 128 115); border-radius: 20px; margin-left: 10px;  margin-right: 10px; margin-bottom: 10px;">
             <div class="ms-2 me-auto">
-            <div class="fw-bold">${element.date}</div>
-            Tipo: ${element.type}
+            <div class="fw-bold" style="color: white;">${element.date}</div>
+            <p style="color: white; margin-bottom: -2px;">Tipo: ${element.type}</p>
          </div>
             <span class="badge bg-${colorBadge} rounded-pill" style="margin-top:10px; width:70px; height:30px; font-size:18px;">$${showTypeSaldo}</span>
         </li>
