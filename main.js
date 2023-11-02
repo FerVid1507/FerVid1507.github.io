@@ -12,18 +12,19 @@ readSaldo();
 
 btn_send.addEventListener('click', () => {
     console.log(process_sel.value)
-    db.collection('item').doc().set({
-        id: dato_in.value,
-        name: name_in.value,
-        process: process_sel.value
-    }).then((docRef) => {
-        console.log('Event sucessfuly!');
-    }).catch((error) => {
-        console.log('Error: ' + error);
-    });
-    dato_in.value = ''
-    name_in.value = ''
-
+    if(dato_in.value!='' && name_in.value!=''){
+        db.collection('item').doc().set({
+            id: dato_in.value,
+            name: name_in.value,
+            process: process_sel.value
+        }).then((docRef) => {
+            console.log('Event sucessfuly!');
+        }).catch((error) => {
+            console.log('Error: ' + error);
+        });
+        dato_in.value = ''
+        name_in.value = ''
+    }
 });
 
 
