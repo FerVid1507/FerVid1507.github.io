@@ -24,6 +24,8 @@ btn_send.addEventListener('click', () => {
         });
         dato_in.value = ''
         name_in.value = ''
+    }else{
+        alert('Campos vacíos');
     }
 });
 
