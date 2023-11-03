@@ -1,4 +1,4 @@
-econst db = firebase.firestore();
+const db = firebase.firestore();
 let datos = [];
 
 let btn_send = document.getElementById('send')
