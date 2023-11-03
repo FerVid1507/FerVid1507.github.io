@@ -16,7 +16,8 @@ btn_send.addEventListener('click', () => {
         db.collection('item').doc().set({
             id: dato_in.value,
             name: name_in.value,
-            process: process_sel.value
+            process: process_sel.value,
+            gen_file: 'False'
         }).then((docRef) => {
             console.log('Event sucessfuly!');
         }).catch((error) => {
