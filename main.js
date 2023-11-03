@@ -54,8 +54,8 @@ function readSaldo() {
         <li class="list-group-item d-flex justify-content-between align-items-start"  
         style="background-color: rgb(2 128 115); border-radius: 20px; margin-left: 10px;  margin-right: 10px; margin-bottom: 10px;">
             <div class="ms-2 me-auto">
-            <div class="fw-bold" style="color: white;">ID item: ${element.name}</div>
-            <div class="fw-bold" style="color: white;">Name item: ${element.id}</div>
+            <div class="fw-bold" style="color: white;">Nam item: ${element.name}</div>
+            <div class="fw-bold" style="color: white;">ID item: ${element.id}</div>
             <p style="color: white; margin-bottom: -2px;">Process: ${element.process}</p>
          </div>
 
