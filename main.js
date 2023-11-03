@@ -14,7 +14,7 @@ btn_send.addEventListener('click', () => {
     console.log(process_sel.value)
     if(dato_in.value!='' && name_in.value!=''){
         db.collection('item').doc().set({
-            id: dato_in.value,
+            id_item: dato_in.value,
             name: name_in.value,
             process: process_sel.value,
             gen_file: 'False'
