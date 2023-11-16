@@ -1,7 +1,7 @@
 const db = firebase.firestore();
 let datos = [];
 const fecha = new Date();
-let dateNow = (fecha.getMonth()+1)+'/'+fecha.getDate()+'/'+fecha.getFullYear() +' '+ fecha.getHours() +':'+ fecha.getMinutes()+':'+fecha.getSeconds();
+let dateNow = (fecha.getMonth()+1)+'/'+fecha.getDate()+'/'+fecha.getFullYear();
 let btn_send = document.getElementById('send')
 let process_sel = document.getElementById('process')
 let dato_in = document.getElementById('dato_in')
