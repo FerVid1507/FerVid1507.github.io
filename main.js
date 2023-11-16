@@ -1,6 +1,7 @@
 const db = firebase.firestore();
 let datos = [];
-
+const fecha = new Date();
+dateNow = (fecha.getMonth()+1)+'/'+fecha.getDate()+'/'+fecha.getFullYear() +' '+ fecha.getHours() +':'+ fecha.getMinutes()+':'+fecha.getSeconds();
 let btn_send = document.getElementById('send')
 let process_sel = document.getElementById('process')
 let dato_in = document.getElementById('dato_in')
@@ -17,7 +18,8 @@ btn_send.addEventListener('click', () => {
             id_item: dato_in.value,
             name: name_in.value,
             process: process_sel.value,
-            gen_file: 'False'
+            gen_file: 'False',
+            date:dateNow
         }).then((docRef) => {
             console.log('Event sucessfuly!');
         }).catch((error) => {
