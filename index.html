@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="main.js" type="module"></script>
+    <script src="notificaciones.js"></script>
+
     <title>MiTarjeta</title>
 </head>
 
@@ -14,11 +18,11 @@
     <div id="Notificacion"></div>
 
     <!--div class="card border-warning" style=" height: 250px; margin: 10px; background-image: url('images/Mi\ Tarjeta\ fondo.png'); background-size: cover;"-->
-    <div class="card border-warning" style=" height: 140px; margin: 10px; background-color: rgb(1 84 76);;"></div>
-        <!--img src="images/icon.png" class="card-img" alt="..." style="height: 110px;"-->
-        <div class="card-img-overlay" >
-          <input id="name" placeholder="Name_item"/>
-          <input id="dato_in" placeholder="id_item" style="width: 80%; p"/>
+    <!--div class="card border-warning" style=" height: 140px; margin: 10px; background-color: rgb(1 84 76);;"></div>
+        <img src="images/icon.png" class="card-img" alt="..." style="height: 110px;"-->
+        <!--div class="card-img-overlay" >
+          <input id="name" placeholder="ID item"/>
+          <input type="datetime" id="dato_in" placeholder="New DateTime item" style="width: 80%;"/>
           
           <div style="margin-top: 15px;">
             <select id="process">
@@ -26,15 +30,63 @@
               <option value="SF2-SF5">SF2-SF5</option>
             </select>
             <input type="button" value="Send" id="send"/>
+
           </div>
          
             <div style="width: 100%; display:inline-flex; align-items: unset;">
             </div>
+           
         </div>
+    </div-->
+
+    <table class="table table-primary">
+      <thead>
+          <tr>
+              <th scope="col">Identificador</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Frecuencia</th>
+              <th scope="col">Vencimiento</th>
+              <th scope="col">Dias</th>
+          </tr>
+      </thead>
+      <tbody id="Contenedor">
+      </tbody>
+  </table>
+
+
     </div>
 
+    <!--table class="table table-primary">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-success">
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr class="table-warning">
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr class="table-danger">
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table-->
 
-    <scroll-container 
+    <!--scroll-container 
     id="Contenedor"
     style="
     display: block; 
@@ -45,7 +97,7 @@
     </scroll-page>
     </scroll-container>
         </div>
-      </div>
+      </div-->
 
 </body>
 
@@ -57,29 +109,8 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script type="module">
 
-    const firebaseConfig = {
-       /*apiKey: "AIzaSyBpRo-4DpdVlaERoi7qLhZwZr7WKFWN9RQ",
-        authDomain: "bdfirestore-1bafd.firebaseapp.com",
-        projectId: "bdfirestore-1bafd",
-        storageBucket: "bdfirestore-1bafd.appspot.com",
-        messagingSenderId: "1064901149667",
-        appId: "1:1064901149667:web:166571daea70f78c3ad6d6"*/
-
-        apiKey: "AIzaSyCI1BUlNEkkjZkQ_Msu9WA2fsKoSxobgqY",
-        authDomain: "toolfiretk.firebaseapp.com",
-        projectId: "toolfiretk",
-        storageBucket: "toolfiretk.appspot.com",
-        messagingSenderId: "187359299361",
-        appId: "1:187359299361:web:8386c609b6ada3243aa060",
-        measurementId: "G-JFCF48GJ43"
-       
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+   
 
 </script>
-<script src="main.js" type="module"></script>
-<script src="notificaciones.js"></script>
 
 </html>
