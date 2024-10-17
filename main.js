@@ -23,48 +23,54 @@ const db = firebase.firestore();
 let datos = [];
 const fecha = new Date();
 let dateNow = (fecha.getMonth()+1)+'/'+fecha.getDate()+'/'+fecha.getFullYear();
-/*let btn_send = document.getElementById('send')
-let process_sel = document.getElementById('process')
-let dato_in = document.getElementById('dato_in')
-let name_in = document.getElementById('name')*/
+
+let item = document.getElementById('id')
+let dato_in = document.getElementById('date')
+
+let btn_send = document.getElementById('send')
+let btn_load = document.getElementById('load')
+let btn_clear = document.getElementById('clear')
+
 let numItem = 0;
-
-
-/*document.getElementById('Contenedor').addEventListener('click', e=>{
-    var row = (document.getElementById('Contenedor')).parent().parent()
-    var rowId = row.getAttribute('id')
-    console.log(rowId)
-    //var tr = document.getElementsByTagName("tr");
-    //console.log(tr[3])
-    //console.log(document.getElementById('Contenedor').parentElement)
-})*/
-
+btn_send.disabled = true
 readSaldo();
 
+btn_load.addEventListener('click', e=>{
+    let indice = 0
+    let id_selected
+    btn_send.disabled = false
+    while(indice < datos.length){
+        if(item.value === datos[indice][1]){
+            console.log(datos[indice][0],datos[indice][1])
+            id_selected = datos[indice][0]
+            dato_in.value = datos[indice][4]
+            btn_load.disabled = true
+        }
+        indice++
+    }
 
-/*btn_send.addEventListener('click', () => {
-    console.log(process_sel.value)
-    if(dato_in.value!='' && name_in.value!=''){
-        db.collection('item').doc().set({
-            id_item: dato_in.value,
-            name: name_in.value,
-            process: process_sel.value,
-            gen_file: 'False',
-            date:dateNow
+    btn_send.onclick = function(){
+        console.log(id_selected)
+
+        db.collection('items_val').doc(id_selected).update({
+            Vencimiento: dato_in.value,
         }).then((docRef) => {
             console.log('Event sucessfuly!');
+            dato_in.value = ''
+            btn_send.disabled = true
+            btn_load.disabled = false
         }).catch((error) => {
             console.log('Error: ' + error);
         });
-        dato_in.value = ''
-        name_in.value = ''
-    }else{
-        alert('Campos vacíos');
     }
-});*/
+    
+})
 
-
-
+btn_clear.addEventListener('click', e=>{
+    dato_in.value = ''
+    btn_send.disabled = true
+    btn_load.disabled = false
+})
 
 
 function getDifferent(getDueDate){
@@ -73,19 +79,26 @@ function getDifferent(getDueDate){
 
     let convert_last = (last.getMonth()+1)+'/'+last.getDate()+'/'+last.getFullYear()
     let diff = new Date(convert_last).getTime()  - new Date(dateNow).getTime()
-    //console.log("Diferencia: " + diff + " = " + new Date(convert_last) + " - " + new Date(dateNow))
     return diff
 }
 
 function readSaldo() {
     //alert(diff/(1000*60*60*24))
     let tabla = document.getElementById('Contenedor')
+    let indice = 0
+    item.innerHTML = ''
     db.collection('items_val').onSnapshot((doc) => {
-
+        item.innerHTML = ''
         //document.querySelector('#Contenedor').innerHTML = '';
         tabla.innerHTML = '';
+
         doc.forEach(element => {
-            //console.log(element.id)
+            datos[0, indice] = [element.id,element.data().Identificador,element.data().Descripcion,element.data().Frecuencia,element.data().Vencimiento]
+            indice ++
+
+            item.innerHTML += `
+             <option value="${element.data().Identificador}">${element.data().Identificador}</option>   
+            `;
 
             let pm = getDifferent(element.data().Vencimiento)/(1000*60*60*24)
             let type = pm>7?"table-success":pm<=0?"table-danger":pm<=7 || pm>=1?"table-warning":"table-success"
@@ -110,29 +123,3 @@ function readSaldo() {
 function editar(id){
     console.log('Document ID: ' + id)
 }
-
-        /*items.map(
-            function (element) {
-               console.log(element.id)
-                let pm = getDifferent(element.Vencimiento)/(1000*60*60*24)
-                //document.querySelector('#Contenedor').appendChild += `
-                let type = pm>7?"table-success":pm<=0?"table-danger":pm<=7 || pm>=1?"table-warning":"table-success"
-                document.querySelector('#Contenedor').innerHTML += `
-                
-                    <tr class=${type}>
-                        <th scope="row">${element.Identificador}</th>
-                        <td>${element.Descripcion}</td>
-                        <td> ${element.Frecuencia}</td>
-                        <td> ${element.Vencimiento}</td>
-                        <td> ${pm}</td>
-                        
-                    </tr>
-
-                `;
-
-            });
-            numItem = items.length;
-            //console.log('Num items: ' + numItem);
-        });*/
-
-
