@@ -63,6 +63,7 @@ btn_load.addEventListener('click', e=>{
         }).then((docRef) => {
             console.log('Event sucessfuly!');
             dato_in.value = ''
+            name_item.value = ''
             btn_send.disabled = true
             btn_load.disabled = false
             btn_clear.disabled = true
@@ -75,6 +76,7 @@ btn_load.addEventListener('click', e=>{
 
 btn_clear.addEventListener('click', e=>{
     dato_in.value = ''
+    name_item.value = ''
     btn_send.disabled = true
     btn_load.disabled = false
     btn_clear.disabled = true
