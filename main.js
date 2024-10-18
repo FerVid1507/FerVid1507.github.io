@@ -25,7 +25,9 @@ const fecha = new Date();
 let dateNow = (fecha.getMonth()+1)+'/'+fecha.getDate()+'/'+fecha.getFullYear();
 
 let item = document.getElementById('id')
+let name_item = document.getElementById('name')
 let dato_in = document.getElementById('date')
+
 
 let btn_send = document.getElementById('send')
 let btn_load = document.getElementById('load')
@@ -45,6 +47,7 @@ btn_load.addEventListener('click', e=>{
         if(item.value === datos[indice][1]){
             console.log(datos[indice][0],datos[indice][1])
             id_selected = datos[indice][0]
+            name_item.value = datos[indice][2]
             dato_in.value = datos[indice][4]
             btn_load.disabled = true
             btn_clear.disabled = false
