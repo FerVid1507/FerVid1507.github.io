@@ -33,18 +33,21 @@ let btn_clear = document.getElementById('clear')
 
 let numItem = 0;
 btn_send.disabled = true
+btn_clear.disabled = true
 readSaldo();
 
 btn_load.addEventListener('click', e=>{
     let indice = 0
     let id_selected
     btn_send.disabled = false
+    btn_clear.disabled = true
     while(indice < datos.length){
         if(item.value === datos[indice][1]){
             console.log(datos[indice][0],datos[indice][1])
             id_selected = datos[indice][0]
             dato_in.value = datos[indice][4]
             btn_load.disabled = true
+            btn_clear.disabled = false
         }
         indice++
     }
@@ -59,6 +62,7 @@ btn_load.addEventListener('click', e=>{
             dato_in.value = ''
             btn_send.disabled = true
             btn_load.disabled = false
+            btn_clear.disabled = true
         }).catch((error) => {
             console.log('Error: ' + error);
         });
@@ -70,6 +74,7 @@ btn_clear.addEventListener('click', e=>{
     dato_in.value = ''
     btn_send.disabled = true
     btn_load.disabled = false
+    btn_clear.disabled = true
 })
 
 
