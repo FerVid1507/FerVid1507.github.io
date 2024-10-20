@@ -103,21 +103,21 @@ function readSaldo() {
         tabla.innerHTML = '';
 
         doc.forEach(element => {
-            if(element.data().Identificador != "Trigger"){
+            if(element.data().Identificador !== "Trigger"){
                 datos[0, indice] = [element.id,element.data().Identificador,element.data().Descripcion,element.data().Frecuencia,element.data().Vencimiento]
                 indice ++
-            }
+            
 
-            item.innerHTML += `
-             <option value="${element.data().Identificador}">${element.data().Identificador}</option>   
-            `;
+                item.innerHTML += `
+                 <option value="${element.data().Identificador}">${element.data().Identificador}</option>   
+                `;
 
-            let pm = getDifferent(element.data().Vencimiento)/(1000*60*60*24)
-            let type = pm>7?"table-success":pm<=0?"table-danger":pm<=7 || pm>=1?"table-warning":"table-success"
-            datos.concat(element.id)
-            //document.querySelector('#Contenedor').innerHTML += `
+                let pm = getDifferent(element.data().Vencimiento)/(1000*60*60*24)
+                let type = pm>7?"table-success":pm<=0?"table-danger":pm<=7 || pm>=1?"table-warning":"table-success"
+                datos.concat(element.id)
+                //document.querySelector('#Contenedor').innerHTML += `
            
-            tabla.innerHTML += `
+                tabla.innerHTML += `
                     <tr class=${type} id=${element.id}>
                         <th scope="row">${element.data().Identificador}</th>
                         <td>${element.data().Descripcion}</td>
@@ -126,7 +126,7 @@ function readSaldo() {
                         <td> ${pm}</td>
                     </tr>
                 `;
-
+            }
         }); 
         console.log("Fin de carga")
     });
