@@ -103,8 +103,10 @@ function readSaldo() {
         tabla.innerHTML = '';
 
         doc.forEach(element => {
-            datos[0, indice] = [element.id,element.data().Identificador,element.data().Descripcion,element.data().Frecuencia,element.data().Vencimiento]
-            indice ++
+            if(element.data().Identificador != "Trigger"){
+                datos[0, indice] = [element.id,element.data().Identificador,element.data().Descripcion,element.data().Frecuencia,element.data().Vencimiento]
+                indice ++
+            }
 
             item.innerHTML += `
              <option value="${element.data().Identificador}">${element.data().Identificador}</option>   
